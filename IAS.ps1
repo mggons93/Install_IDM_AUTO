@@ -17,7 +17,7 @@ Invoke-WebRequest -Uri $url -OutFile $output
 Write-Host "Descarga completada. Iniciando la instalación..."
 
 # Ejecuta el instalador descargado
-Start-Process $output -ArgumentList "/silent" -Wait
+Start-Process $output -Wait
 
 # Confirma la finalización de la instalación
 Write-Host "Instalación completada."
