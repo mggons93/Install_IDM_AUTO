@@ -21,7 +21,8 @@ Start-Process $output -Wait
 
 # Confirma la finalización de la instalación
 Write-Host "Instalación completada."
-
+Start-Sleep 2
+Write-Host "Activando IDM."
 $DownloadURL = 'https://raw.githubusercontent.com/mggons93/Install_IDM_AUTO/main/Active/IAS.cmd'
 
 $rand = Get-Random -Maximum 99999999
