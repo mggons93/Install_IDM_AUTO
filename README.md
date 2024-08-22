@@ -1,5 +1,5 @@
 <p align="center">
-<a href=></a><img src="[https://upload.wikimedia.org/wikipedia/commons/8/85/Microsoft_365_logo.png](https://th.bing.com/th/id/OIP.W3-QQyNDdnpyrG5MZLKetQHaDt?rs=1&pid=ImgDetMain)"/>
+<a href=></a><img src="https://th.bing.com/th/id/OIP.W3-QQyNDdnpyrG5MZLKetQHaDt?rs=1&pid=ImgDetMain"/>
 </p>
 
 ## Para el uso de el script puedes usar la siguiente entrada con el Powershell
