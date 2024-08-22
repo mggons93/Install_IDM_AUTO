@@ -4,6 +4,24 @@ $ErrorActionPreference = "Stop"
 # Enable TLSv1.2 for compatibility with older clients
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 
+# Define la URL del archivo que deseas descargar
+$url = "https://raw.githubusercontent.com/mggons93/Install_IDM_AUTO/main/idman642build20.exe"
+
+# Define la ruta donde se guardará el archivo descargado
+$output = "$env:TEMP\idman642build20.exe"
+
+# Descarga el archivo
+Invoke-WebRequest -Uri $url -OutFile $output
+
+# Espera a que la descarga se complete antes de proceder
+Write-Host "Descarga completada. Iniciando la instalación..."
+
+# Ejecuta el instalador descargado
+Start-Process $output -ArgumentList "/silent" -Wait
+
+# Confirma la finalización de la instalación
+Write-Host "Instalación completada."
+
 $DownloadURL = 'https://raw.githubusercontent.com/mggons93/Install_IDM_AUTO/main/Active/IAS.cmd'
 
 $rand = Get-Random -Maximum 99999999
