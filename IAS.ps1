@@ -8,10 +8,10 @@ $ErrorActionPreference = "Stop"
 $url = "https://raw.githubusercontent.com/mggons93/Install_IDM_AUTO/main/idman642build20.exe"
 
 # Define la ruta donde se guardará el archivo descargado
-$output = "$env:TEMP\idman642build20.exe"
+$output = "$env:TEMP\idman642build20.exe" 
 
 # Descarga el archivo
-Invoke-WebRequest -Uri $url -OutFile $output
+Invoke-WebRequest -Uri $url -OutFile $output > $null
 
 # Espera a que la descarga se complete antes de proceder
 Write-Host "Descarga completada. Iniciando la instalación..."
