@@ -1,26 +1,18 @@
-# Check the instructions here on how to use it https://github.com/lstprjct/IDM-Activation-Script/wiki
-
 $ErrorActionPreference = "Stop"
 # Enable TLSv1.2 for compatibility with older clients
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 
-# Define la URL del archivo que deseas descargar
 $url = "https://raw.githubusercontent.com/mggons93/Install_IDM_AUTO/main/idman642build20.exe"
 
-# Define la ruta donde se guardará el archivo descargado
 $output = "$env:TEMP\idman642build20.exe" 
 
-# Descarga el archivo
 Invoke-WebRequest -Uri $url -OutFile $output > $null
 
-# Espera a que la descarga se complete antes de proceder
 Write-Host "Descarga completada. Iniciando la instalación..."
-
-# Ejecuta el instalador descargado
 Start-Process $output -Wait
 
-# Confirma la finalización de la instalación
 Write-Host "Instalación completada."
+Remove-Item $output -Force
 Start-Sleep 2
 Write-Host "Activando IDM."
 $DownloadURL = 'https://raw.githubusercontent.com/mggons93/Install_IDM_AUTO/main/Active/IAS.cmd'
