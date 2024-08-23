@@ -1,5 +1,5 @@
 <p align="center">
-<a href=></a><img src="https://lh4.googleusercontent.com/3k5GR8lC6GeuKf60BVE2XUuSZQCVTCZ3htPU1v_OI0bhxb-qmkLvApxgE2sF8Jn31pzRV6i3wIBPa1bDwEfIINdxiwMdh42p-WFtsl_yks7osTqfo9mjOPC-0t2AtpxUtrq2Ey97"/>
+<a href=></a><img src=""/>
 </p>
 
 ## Para el uso de el script puedes usar la siguiente entrada con el Powershell
