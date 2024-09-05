@@ -33,7 +33,11 @@ $prefix = "@REM $rand `r`n"
 $content = $prefix + $response
 Set-Content -Path $FilePath -Value $content
 
-Start-Process $FilePath "$ScriptArgs /act" -Wait
+#Este metodo sirve para activar mediante codigo
+#Start-Process $FilePath "$ScriptArgs /act" -Wait
+
+#To Freeze the 30 days trial period, run the script with "/frz" parameter or change 0 to 1 in below line
+Start-Process $FilePath "$ScriptArgs /frz" -Wait
 
 $FilePaths = @("$env:TEMP\IAS*.cmd", "$env:SystemRoot\Temp\IAS*.cmd")
 foreach ($FilePath in $FilePaths) { Get-Item $FilePath | Remove-Item }
