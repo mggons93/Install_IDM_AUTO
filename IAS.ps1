@@ -36,7 +36,7 @@ Set-Content -Path $FilePath -Value $content
 #Este metodo sirve para activar mediante codigo
 #Start-Process $FilePath "$ScriptArgs /act" -Wait
 
-#To Freeze the 30 days trial period, run the script with "/frz" parameter or change 0 to 1 in below line
+#Este metodo sirve para congelar el modo de prueba indefinidamente
 Start-Process $FilePath "$ScriptArgs /frz" -Wait
 
 $FilePaths = @("$env:TEMP\IAS*.cmd", "$env:SystemRoot\Temp\IAS*.cmd")
