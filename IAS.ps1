@@ -41,3 +41,56 @@ Start-Process $FilePath "$ScriptArgs /frz" -Wait
 
 $FilePaths = @("$env:TEMP\IAS*.cmd", "$env:SystemRoot\Temp\IAS*.cmd")
 foreach ($FilePath in $FilePaths) { Get-Item $FilePath | Remove-Item }
+
+# Ruta del registro de IDM
+$regPath = "HKCU:\Software\DownloadManager"
+
+# Comprobar si la clave de registro existe
+if (Test-Path $regPath) {
+    # Establecer el valor de NoAutoUpdate a 1 (desactiva las actualizaciones automáticas)
+    Set-ItemProperty -Path $regPath -Name "NoAutoUpdate" -Value 1
+    Write-Host "Las actualizaciones automáticas de IDM han sido desactivadas."
+} else {
+    Write-Host "No se encontró la clave de registro de IDM. Asegúrate de que IDM esté instalado."
+}
+
+# Función para bloquear la conexión de IDM usando el archivo hosts
+function Bloquear-IDM-HOSTS {
+    $hostsFilePath = "C:\Windows\System32\drivers\etc\hosts"
+    $idmBlockedServers = @(
+        "www.internetdownloadmanager.com",
+        "downloadmanager.com",
+        "idman.exe"
+    )
+    
+    # Verificar si el archivo hosts existe
+    if (Test-Path $hostsFilePath) {
+        # Abrir el archivo y agregar las entradas para bloquear
+        foreach ($server in $idmBlockedServers) {
+            # Agregar la redirección para cada servidor IDM
+            $entry = "127.0.0.1 $server"
+            Add-Content -Path $hostsFilePath -Value $entry
+            Write-Host "Añadido al archivo hosts: $entry"
+        }
+    } else {
+        Write-Host "No se encuentra el archivo hosts."
+    }
+}
+
+# Función para bloquear IDM mediante el Firewall de Windows
+function Bloquear-IDM-Firewall {
+    $idmPath = "C:\Program Files (x86)\Internet Download Manager\IDMan.exe"
+    
+    # Verificar si IDM está instalado
+    if (Test-Path $idmPath) {
+        # Crear una nueva regla de salida en el firewall
+        New-NetFirewallRule -DisplayName "Bloquear IDM" -Direction Outbound -Program $idmPath -Action Block -Profile Any
+        Write-Host "Regla de firewall creada para bloquear IDM."
+    } else {
+        Write-Host "No se encuentra el archivo ejecutable de IDM en la ruta especificada."
+    }
+}
+
+# Ejecutar ambas funciones
+Bloquear-IDM-HOSTS
+Bloquear-IDM-Firewall
